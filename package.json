@@ -1,0 +1,24 @@
+{
+  "name": "evangadi-forum-backend",
+  "version": "1.0.0",
+  "description": "This is evangadi-forum-backend part",
+  "homepage": "https://github.com/tsedeke-techane/evangadi-forum-backend#readme",
+  "bugs": {
+    "url": "https://github.com/tsedeke-techane/evangadi-forum-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsedeke-techane/evangadi-forum-backend.git"
+  },
+  "license": "ISC",
+  "author": "Tsedeke",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1"
+  }
+}
