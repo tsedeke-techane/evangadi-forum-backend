@@ -1,5 +1,8 @@
 import dbConnection from "../dbConfig/dbConfig.js"; 
-import bcrypt from 'bcrypt';   
+import bcrypt from 'bcrypt';   // Import bcrypt for password hashing
+import jwt from 'jsonwebtoken'; // Import jwt for token generation
+
+
 
 async function register(req, res) {
     const { username, firstname, lastname, email, password } = req.body;
@@ -75,8 +78,13 @@ async function login(req, res) {
             return res.status(400).json({ message: "Invalid email or password" });
         }
 
+        // Generate a JWT token
+        const username = user.username;
+        const userId = user.userId;
+        const token = jwt.sign({userId, username}, process.env.JWT_SECRET, { expiresIn: '30d' });
+        
         // Successful login
-        res.status(200).json({ message: "Login successful", user: { id: user.id, username: user.username } });
+        res.status(200).json({ message: "Login successful", token, user: { id: user.id, username: user.username } });
         
 
     } catch (error) {
@@ -88,7 +96,9 @@ async function login(req, res) {
 
 
 async function checkUser(req, res) {
-    res.send('Check user route');
+    const username = req.user.username;
+    const userId = req.user.userId;
+    res.status(200).json({ message: "User is authenticated", userId, username });
 }
 
 export { register, login, checkUser };
