@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'; // Import jwt for token generation
 
 async function register(req, res) {
     const { username, firstname, lastname, email, password } = req.body;
-    
+
     if (!username || !firstname || !lastname || !email || !password) {
         return res.status(400).json({ message: "All fields are required" });
     }
@@ -84,7 +84,7 @@ async function login(req, res) {
         const token = jwt.sign({userId, username}, process.env.JWT_SECRET, { expiresIn: '30d' });
         
         // Successful login
-        res.status(200).json({ message: "Login successful", token, user: { id: user.id, username: user.username } });
+        res.status(200).json({ message: "Login successful", token, username });
         
 
     } catch (error) {

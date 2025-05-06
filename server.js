@@ -2,12 +2,18 @@ import express from 'express';
 import dbConnection from './dbConfig/dbConfig.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
 import dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config(); // Load environment variables from .env file
+
+
 
 const app = express();
 // json middleware to extract data from the body
 app.use(express.json());
 const port = 3000;
+
+// cors middleware
+app.use(cors());
 
 // user routes middleware file
 import userRoutes from './routes/userRoute.js'
